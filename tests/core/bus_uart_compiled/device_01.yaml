@@ -1,0 +1,4 @@
+esphome:
+  board: nodemcuv2
+  name: device_01
+  platform: ESP8266

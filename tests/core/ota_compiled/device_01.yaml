@@ -1,0 +1,12 @@
+esphome:
+  board: nodemcuv2
+  name: ota_01
+  platform: ESP8266
+ota:
+  password: <<ota_password>>
+  safe_mode: true
+wifi:
+  domain: .local
+  fast_connect: true
+  password: <<wireless_key>>
+  ssid: <<wireless_essid>>

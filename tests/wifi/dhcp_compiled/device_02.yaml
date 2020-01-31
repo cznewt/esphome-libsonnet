@@ -1,0 +1,9 @@
+esphome:
+  board: nodemcuv2
+  name: device_02
+  platform: ESP8266
+wifi:
+  domain: .local
+  fast_connect: true
+  password: <<wireless_key>>
+  ssid: <<wireless_essid>>

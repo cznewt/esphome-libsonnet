@@ -1,0 +1,12 @@
+api:
+  password: <<api_password>>
+  safe_mode: true
+esphome:
+  board: nodemcuv2
+  name: api_simple
+  platform: ESP8266
+wifi:
+  domain: .local
+  fast_connect: true
+  password: <<wireless_key>>
+  ssid: <<wireless_essid>>
