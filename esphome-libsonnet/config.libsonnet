@@ -5,63 +5,108 @@ local esphome = {
   esphome: import 'esphome.libsonnet',
   mqtt: import 'mqtt.libsonnet',
   wifi: import 'wifi.libsonnet',
-  component: import 'component.libsonnet',
 };
 
-local component_domains = [
-  'automation',
+local list_domains = [
+  'api_service',
   'binary_sensor',
+  'climate',
+  'cover',
+  'dallas',
   'fan',
+  'i2c',
   'light',
-  'switch',
   'output',
+  'pca9685',
+  'power_supply',
   'sensor',
+  'servo',
+  'stepper',
+  'switch',
+  'text_sensor',
+  'time',
+  'tlc59208f',
+];
+
+local single_domains = [
+  'esp32_ble_tracker',
+  'esp32_camera',
+  'spi',
+  'status_led',
+  'uart',
 ];
 
 local core_defaults = {
+  run_duration: null,
+  sleep_duration: null,
   api_password: null,
   ota_password: null,
-  log_level: null,
+  ap_password: null,
+  log_level: 'DEBUG',
   domain: 'local',
 };
 
 {
-  new(
-    devices={},
+  includes(
+    devices={}, mixins={},
   ):: {
-    ['%(id)s.yaml' % device]: std.manifestYamlDoc({
-      esphome:
-        esphome.esphome.new(devices[device].core { id: device }),
-      [if std.objectHas(devices[device].core, 'mqtt_host') then 'mqtt']:
-        esphome.mqtt.new(devices[device].core { id: device }),
-      [if std.objectHas(devices[device].core, 'wireless_essid') then 'wifi']:
-        esphome.wifi.new(devices[device].core { id: device } + core_defaults),
-      [if (core_defaults + devices[device].core).api_password != null then 'api']: {
-        safe_mode: true,
-        password: devices[device].core.api_password,
-        [if std.objectHas(devices[device].core, 'api_port') then 'port']:
-          devices[device].core.api_port,
-        [if std.objectHas(devices[device].core, 'api_services') then 'services']:
-          devices[device].core.api_services,
-      },
-      [if (core_defaults + devices[device].core).ota_password != null then 'ota']: {
-        safe_mode: true,
-        password: devices[device].core.ota_password,
-      },
-      [if (core_defaults + devices[device].core).log_level != null then 'logger']: {
-        level: devices[device].core.log_level,
-      },
-    } + {
-      [domain]: [
-        esphome.component.new((devices[device].components[domain][component]) + {
-          id: component,
-        })
-        for component in std.objectFields(devices[device].components[domain])
-      ]
-      for domain in component_domains
-      if std.objectHas(devices[device], 'components')
-      if std.objectHas(devices[device].components, domain)
-    })
-    for device in std.objectFields(devices)
+    [driver]: mixins._config.driver[driver]
+    for driver in std.objectFields(mixins._config.driver)
   },
+  new(
+    devices={}, networks={}, mixins={},
+  ):: {
+    [device + '.yaml']:
+      local device_list_domains = {
+        [domain]: std.flattenArrays([
+          mixins._config.entity[mixin.kind](mixin { raw_name: if std.objectHas(mixin, 'name') then mixin.name else 'undefined', name: if std.objectHas(mixin, 'name') then mixin.name else device })[domain]
+          for mixin in (devices[device].mixins + if std.objectHas(devices[device], 'base_mixins') then devices[device].base_mixins else [])
+          if std.objectHas(mixins._config.entity[mixin.kind](mixin { name: if std.objectHas(mixin, 'name') then mixin.name else device }), domain)
+        ])
+        for domain in list_domains
+      };
+      std.manifestYamlDoc({
+        esphome:
+          esphome.esphome.new(devices[device] { name: device }, mixins),
+        [if std.objectHas(devices[device], 'mqtt') then 'mqtt']:
+          esphome.mqtt.new(devices[device] { name: device }),
+        [if std.objectHas(devices[device], 'networks') then 'wifi']:
+          esphome.wifi.new(devices[device] { name: device } + core_defaults),
+        [if (core_defaults + devices[device] + devices[device].networks[0]).api_password != null then 'api']: {
+          password: (devices[device] + devices[device].networks[0]).api_password,
+          [if std.objectHas(devices[device], 'api_port') then 'port']:
+            devices[device].api_port,
+          [if std.length(device_list_domains['api_service']) > 0 then 'services']:
+            device_list_domains['api_service']
+        },
+        [if (core_defaults + devices[device] + devices[device].networks[0]).ota_password != null then 'ota']: {
+          safe_mode: true,
+          password: (devices[device] + devices[device].networks[0]).ota_password,
+        },
+        [if (core_defaults + devices[device]).log_level != null then 'logger']: {
+          level: (core_defaults + devices[device]).log_level,
+          [if esphome.esphome.board_platforms[devices[device].board] == 'ESP8266' then 'esp8266_store_log_strings_in_flash']: false,
+        },
+        [if (core_defaults + devices[device]).sleep_duration != null then 'deep_sleep']: {
+          run_duration: (core_defaults + devices[device]).run_duration,
+          sleep_duration: (core_defaults + devices[device]).sleep_duration,
+        },
+      } + {
+        [domain]: device_list_domains[domain]
+        for domain in std.objectFields(device_list_domains)
+        if std.length(device_list_domains[domain]) > 0
+        if domain != "api_service"
+      } + {
+        [if std.objectHas(mixins._config.entity[mixin.kind](mixin), domain) then domain]: mixins._config.entity[mixin.kind](mixin)[domain]
+        for domain in single_domains
+        for mixin in (devices[device].mixins + if std.objectHas(devices[device], 'base_mixins') then devices[device].base_mixins else [])
+      })
+    for device in std.objectFields(devices)
+    if !std.objectHas(devices[device], 'raw_config')
+  } + {
+    ['%(id)s.yaml' % device]: std.manifestYamlDoc(devices[device].raw_config)
+    for device in std.objectFields(devices)
+    if std.objectHas(devices[device], 'raw_config')
+  },
+
 }

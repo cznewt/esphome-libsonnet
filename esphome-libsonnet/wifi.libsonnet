@@ -3,16 +3,20 @@
 {
   new(
     config,
-  )::
-    {
-      ssid: config.wireless_essid,
-      password: config.wireless_key,
-      domain: '.' + config.domain,
-      fast_connect: true,
-      [if std.objectHas(config, 'interface_address') then 'manual_ip']: {
-        static_ip: config.interface_address,
-        gateway: config.interface_gateway,
-        subnet: config.interface_netmask,
-      },
+  ):: {
+    domain: '.' + (config + config.networks[0]).domain,
+    fast_connect: true,
+    [if std.objectHas((config + config.networks[0]), 'address') then 'manual_ip']: {
+      static_ip: (config + config.networks[0]).address,
+      gateway: (config + config.networks[0]).gateway,
+      subnet: (config + config.networks[0]).netmask,
     },
+    networks: [
+      {
+        ssid: network.essid,
+        password: network.key,
+      }
+      for network in config.networks
+    ],
+  },
 }
