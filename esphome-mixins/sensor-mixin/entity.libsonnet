@@ -80,27 +80,30 @@
         lambda: |||
           auto ezo_ec_sensor = new EzoEcSensor(%(update_interval)s, %(address)x);
           App.register_component(ezo_ec_sensor);
-          return {ezo_ec_sensor};
+          return {ezo_ec_sensor->ec_sensor, ezo_ec_sensor->tds_sensor, ezo_ec_sensor->s_sensor, ezo_ec_sensor->sg_sensor};
         ||| % config,
         sensors: [
           {
             name: '%(name)s_conductivity' % config,
-            unit_of_measurement: 'µS/cm',
+            unit_of_measurement: 'uS/cm',
             icon: 'mdi:flower',
           },
-          //return {ezo_ec_sensor->conductivity, ezo_ec_sensor->total_dissolved_solids, ezo_ec_sensor->salinity};
-          // {
-          //   name: '%(name)s_total_dissolved_solids' % config,
-          //   unit_of_measurement: 'ppm',
-          // },
-          // {
-          //   name: '%(name)s_salinity' % config,
-          //   unit_of_measurement: 'ppt',
-          // },
+          {
+            name: '%(name)s_total_dissolved_solids' % config,
+            unit_of_measurement: 'ppm',
+          },
+          {
+            name: '%(name)s_salinity' % config,
+            unit_of_measurement: 'PSU',
+          },
+          {
+            name: '%(name)s_specific_gravity' % config,
+            unit_of_measurement: 'g/cm3',
+          },
         ],
       } + $.sensor_params(config),
     ],
-  },
+  },  
   ezo_ph_sensor_entities(config):: {
     includes: [
       'ezo_ph.h',
