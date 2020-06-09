@@ -17,7 +17,7 @@ private:
     Ezo_board* EC;
     float ec_value;
     float ec_data[4];
-	const static uint8_t ec_data_raw_len = 32;
+    const static uint8_t ec_data_raw_len = 32;
     char ec_data_raw[ec_data_raw_len];
     uint32_t next_poll_time = 0;                                //holds the next time we receive a response, in milliseconds
     bool reading_request_phase = true;                          //selects our phase
@@ -41,7 +41,7 @@ public:
         }
         else {                                                  //if were in the receiving phase
             if (millis() >= next_poll_time) {                   //and its time to get the response
-                receive_all_reading();                              //get the reading from the EC circuit
+                receive_all_readings();                              //get the reading from the EC circuit
             }
 
             reading_request_phase = true;                       //switch to the receiving phase
@@ -56,7 +56,7 @@ private:
             case Ezo_board::SUCCESS:
                 ec_value = EC->get_last_received_reading();     //the command was successful, print the reading
                 ESP_LOGD("ezo_ec", "EZO EC sensor measured %.2f uS", ec_value);
-                ec_sensor->publish_state(ec_value);                
+                ec_sensor->publish_state(ec_value);
                 break;
 
             case Ezo_board::FAIL:
@@ -77,9 +77,9 @@ private:
         }
     }
 
-    void receive_all_reading() 
+    void receive_all_readings()
     {
-	    enum Ezo_board::errors error = EC->receive_cmd(ec_data_raw, ec_data_raw_len);
+        enum Ezo_board::errors error = EC->receive_cmd(ec_data_raw, ec_data_raw_len);
 
         switch (error) {
             case Ezo_board::SUCCESS:
@@ -89,9 +89,9 @@ private:
 
                 replace(s.begin(), s.end(), ',', ' ');
 
-	            ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY] = strtof(s.c_str(), &end);
-	            ec_data[EzoEcSensor::TOTAL_DISOLVED_SOLIDS]   = strtof(end, &end);
-	            ec_data[EzoEcSensor::SALANITY]                = strtof(end, &end);
+                ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY] = strtof(s.c_str(), &end);
+                ec_data[EzoEcSensor::TOTAL_DISOLVED_SOLIDS]   = strtof(end, &end);
+                ec_data[EzoEcSensor::SALANITY]                = strtof(end, &end);
                 ec_data[EzoEcSensor::SPEC_GRAV_SEA_WATER]     = strtof(end, nullptr);
 
                 ESP_LOGD("ezo_ec", "EZO EC sensor measured EC = %.2f uS/cm", ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY]);
