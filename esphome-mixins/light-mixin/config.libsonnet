@@ -6,8 +6,8 @@ local entity = (import 'entity.libsonnet');
 {
   _config+:: {
     entity+: {
-      neopixel_light: entity.neopixel_light_entities,
-      fastled_light: entity.fastled_light_entities,
+      neopixel_light: entity.neopixel_light,
+      fastled_light: entity.fastled_light,
     },
   },
 }

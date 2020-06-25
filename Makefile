@@ -14,4 +14,4 @@ validate:
 
 init:
 	virtualenv --python=python3 venv
-	. venv/bin/activate; pip install esphome
+	. venv/bin/activate; pip install esphome; pip install jsonnet-docblock-parser

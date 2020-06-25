@@ -5,3 +5,4 @@
 + (import 'light-mixin/mixin.libsonnet')
 + (import 'sensor-mixin/mixin.libsonnet')
 + (import 'vendor-mixin/mixin.libsonnet')
++ (import 'auto-mixin/mixin.libsonnet')

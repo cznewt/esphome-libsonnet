@@ -1,5 +1,5 @@
 {
-  sonoff_s20_switch_entities(config):: {
+  sonoff_s20_switch(config):: {
     binary_sensor+: [
       {
         platform: 'gpio',
@@ -44,7 +44,7 @@
       },
     ],
   },
-  sonoff_mini_switch_entities(config):: {
+  sonoff_mini_switch(config):: {
     binary_sensor+: [
       {
         platform: 'gpio',

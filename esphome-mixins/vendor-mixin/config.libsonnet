@@ -19,11 +19,11 @@ local allbot_entity = (import 'entity/allbot.libsonnet');
       },
     },
     entity+: {
-      sonoff_4ch_pro_r2_switch: sonoff_entity.sonoff_4ch_pro_r2_switch_entities,
-      sonoff_s20_switch: sonoff_entity.sonoff_s20_switch_entities,
-      sonoff_s26_switch: sonoff_entity.sonoff_s26_switch_entities,
-      sonoff_mini_switch: sonoff_entity.sonoff_mini_switch_entities,
-      generic_rgbw_light: entity.generic_rgbw_light_entities,
+      sonoff_4ch_pro_r2_switch: sonoff_entity.sonoff_4ch_pro_r2_switch,
+      sonoff_s20_switch: sonoff_entity.sonoff_s20_switch,
+      sonoff_s26_switch: sonoff_entity.sonoff_s26_switch,
+      sonoff_mini_switch: sonoff_entity.sonoff_mini_switch,
+      generic_rgbw_light: entity.generic_rgbw_light,
     },
   },
 }

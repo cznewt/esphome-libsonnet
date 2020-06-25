@@ -1,5 +1,5 @@
 {
-  neopixel_light_entities(config):: {
+  neopixel_light(config):: {
     light+: [
       {
         platform: 'neopixelbus',
@@ -10,7 +10,7 @@
       },
     ],
   },
-  fastled_light_entities(config):: {
+  fastled_light(config):: {
     light+: [
       {
         platform: 'fastled_clockless',

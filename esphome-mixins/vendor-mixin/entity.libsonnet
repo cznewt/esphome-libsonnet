@@ -1,5 +1,5 @@
 {
-  generic_rgbw_light_entities(config):: {
+  generic_rgbw_light(config):: {
     output+: [
       {
         platform: 'esp8266_pwm',

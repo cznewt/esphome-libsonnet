@@ -118,7 +118,7 @@
       },
     ],
   },
-  sonoff_s20_switch_entities(config):: {
+  sonoff_s20_switch(config):: {
     // https://esphome-configs.io/devices/sonoff-s20/
     binary_sensor+: [
       {
@@ -171,7 +171,7 @@
       },
     ],
   },
-  sonoff_s26_switch_entities(config):: {
+  sonoff_s26_switch(config):: {
     // https://esphome-configs.io/devices/sonoff-s20/
     binary_sensor+: [
       {
@@ -224,7 +224,7 @@
       },
     ],
   },
-  sonoff_mini_switch_entities(config):: {
+  sonoff_mini_switch(config):: {
     binary_sensor+: [
       {
         platform: 'gpio',

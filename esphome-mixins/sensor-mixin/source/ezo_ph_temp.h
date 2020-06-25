@@ -1,25 +1,28 @@
 #include "esphome.h"
 #include "Ezo_i2c.h"
 
-class EzoPhSensor : public PollingComponent, public Sensor
+class EzoTempCompPhSensor : public PollingComponent, public Sensor
 {
 private:
     Ezo_board* PH;
+    char sensor[];
     float ph_value = 0.0;
     uint32_t next_poll_time = 0;                                //holds the next time we receive a response, in milliseconds
     bool reading_request_phase = true;                          //selects our phase
     const unsigned int response_delay = 1000;                   //how long we wait to receive a response, in milliseconds
 
 public:
-    EzoPhSensor(int update_interval, uint8_t address = 99) : PollingComponent(update_interval)
+    EzoTempCompPhSensor(int update_interval, uint8_t address = 99, char sensor_id[]) : PollingComponent(update_interval)
     {
         PH = new Ezo_board(address, "PH");
+        sensor = sensor_id;
     }
 
     void update() override 
     {
         if (reading_request_phase) {                            //if were in the phase where we ask for a reading
-            PH->send_read_cmd();
+            
+            PH->send_read_with_temp_comp(id(sensor).state);     ////sends the "RT" command with the temperature converted to a string
 
             next_poll_time = millis() + response_delay;         //set when the response will arrive
             reading_request_phase = false;                      //switch to the receiving phase
@@ -40,7 +43,7 @@ private:
         switch (PH->get_error()) {                              //switch case based on what the response code is.
             case Ezo_board::SUCCESS:
                 ph_value = PH->get_last_received_reading();     //the command was successful, print the reading
-                ESP_LOGD("ezo_ph", "Got pH=%.2f", ph_value);
+                ESP_LOGD("ezo_ph", "EZO pH sensor measured %.2f ph", ph_value);
                 publish_state(ph_value);                
                 break;
 

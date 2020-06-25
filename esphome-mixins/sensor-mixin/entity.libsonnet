@@ -20,7 +20,7 @@
       if std.objectHas(config, 'address') then config.address else address
     ),
   } + $.sensor_update_params(config),
-  bh1750_sensor_entities(config):: {
+  bh1750_sensor(config):: {
     sensor+: [
       {
         platform: 'bh1750',
@@ -28,7 +28,7 @@
       } + $.i2c_params(config, 35, '0x23'),
     ],
   },
-  bmp280_sensor_entities(config):: {
+  bmp280_sensor(config):: {
     sensor+: [
       {
         platform: 'bmp280',
@@ -42,7 +42,7 @@
       } + $.i2c_params(config, 118, '0x76'),
     ],
   },
-  dallas_ds18_sensor_entities(config):: {
+  dallas_ds18_sensor(config):: {
     sensor+: [
       {
         platform: 'dallas',
@@ -51,7 +51,7 @@
       } + $.sensor_params(config),
     ],
   },
-  dht_sensor_entities(config):: {
+  dht_sensor(config):: {
     sensor+: [
       {
         platform: 'dht',
@@ -67,7 +67,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  ezo_ec_sensor_entities(config):: {
+  ezo_ec_sensor(config):: {
     includes: [
       'ezo_ec.h',
     ],
@@ -103,8 +103,33 @@
         ],
       } + $.sensor_params(config),
     ],
-  },  
-  ezo_ph_sensor_entities(config):: {
+  },
+  ezo_orp_sensor(config):: {
+    includes: [
+      'ezo_orp.h',
+    ],
+    libraries: [
+      'Ezo_I2c_lib',
+    ],
+    sensor+: [
+      {
+        platform: 'custom',
+        lambda: |||
+          auto ezo_orp_sensor = new EzoOrpSensor(%(update_interval)s, %(address)x);
+          App.register_component(ezo_orp_sensor);
+          return {ezo_orp_sensor};
+        ||| % config,
+        sensors: [
+          {
+            name: '%(name)s_oxidation_reduction_potencial' % config,
+            unit_of_measurement: 'ORP',
+            accuracy_decimals: 2,
+          },
+        ],
+      } + $.sensor_params(config),
+    ],
+  },
+  ezo_ph_sensor(config):: {
     includes: [
       'ezo_ph.h',
     ],
@@ -121,15 +146,40 @@
         ||| % config,
         sensors: [
           {
-            name: '%(name)s_acidity' % config,
-            unit_of_measurement: 'pH',
+            name: '%(name)s_ph' % config,
+            unit_of_measurement: '',
             accuracy_decimals: 2,
           },
         ],
       } + $.sensor_params(config),
     ],
   },
-  gpio_binary_sensor_entities(config):: {
+  ezo_temp_comp_ph_sensor(config):: {
+    includes: [
+      'ezo_ph_temp.h',
+    ],
+    libraries: [
+      'Ezo_I2c_lib',
+    ],
+    sensor+: [
+      {
+        platform: 'custom',
+        lambda: |||
+          auto ezo_ph_temp_sensor = new EzoTempCompPhSensor(%(update_interval)s, %(address)x, %(sensor_id)x);
+          App.register_component(ezo_ph_temp_sensor);
+          return {ezo_ph_temp_sensor};
+        ||| % config,
+        sensors: [
+          {
+            name: '%(name)s_ph' % config,
+            unit_of_measurement: '',
+            accuracy_decimals: 2,
+          },
+        ],
+      } + $.sensor_params(config),
+    ],
+  },
+  gpio_binary_sensor(config):: {
     binary_sensor+: [
       {
         platform: 'gpio',
@@ -139,7 +189,7 @@
       } + $.sensor_params(config),
     ],
   },
-  htu21d_sensor_entities(config):: {
+  htu21d_sensor(config):: {
     sensor+: [
       {
         platform: 'htu21d',
@@ -152,7 +202,7 @@
       } + $.i2c_params(config, 64, '0x40'),
     ],
   },
-  max6675_sensor_entities(config):: {
+  max6675_sensor(config):: {
     sensor+: [
       {
         platform: 'max6675',
@@ -162,7 +212,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  pulse_counter_sensor_entities(config):: {
+  pulse_counter_sensor(config):: {
     sensor+: [
       {
         platform: 'max6675',
@@ -171,7 +221,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  rotary_encoder_sensor_entities(config):: {
+  rotary_encoder_sensor(config):: {
     sensor+: [
       {
         platform: 'rotary_encoder',
@@ -181,7 +231,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  sgp30_sensor_entities(config):: {
+  sgp30_sensor(config):: {
     sensor+: [
       {
         platform: 'sgp30',
@@ -196,7 +246,7 @@
       } + $.i2c_params(config, 88, '0x58'),
     ],
   },
-  sht3x_sensor_entities(config):: {
+  sht3x_sensor(config):: {
     sensor+: [
       {
         platform: 'sht3xd',
@@ -209,7 +259,7 @@
       } + $.i2c_params(config, 68, '0x44'),
     ],
   },
-  tsl2561_sensor_entities(config):: {
+  tsl2561_sensor(config):: {
     sensor+: [
       {
         platform: 'tsl2561',
@@ -217,7 +267,7 @@
       } + $.i2c_params(config, 57, '0x39'),
     ],
   },
-  tsl2591_sensor_entities(config):: {
+  tsl2591_sensor(config):: {
     includes: [
       'tsl2591.h',
     ],
@@ -243,7 +293,7 @@
       } + $.sensor_params(config),
     ],
   },
-  ultrasonic_sensor_entities(config):: {
+  ultrasonic_sensor(config):: {
     sensor+: [
       {
         platform: 'ultrasonic',
@@ -253,7 +303,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  uptime_sensor_entities(config):: {
+  uptime_sensor(config):: {
     sensor+: [
       {
         platform: 'uptime',
@@ -261,7 +311,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  homeassistant_text_sensor_entities(config):: {
+  homeassistant_text_sensor(config):: {
     text_sensor+: [
       {
         platform: 'homeassistant',
@@ -270,7 +320,7 @@
       } + $.text_sensor_params(config),
     ],
   },
-  version_sensor_entities(config):: {
+  version_sensor(config):: {
     text_sensor+: [
       {
         platform: 'version',
@@ -278,7 +328,7 @@
       } + $.text_sensor_params(config),
     ],
   },
-  vl53l0x_sensor_entities(config):: {
+  vl53l0x_sensor(config):: {
     sensor+: [
       {
         platform: 'vl53l0x',
@@ -286,7 +336,7 @@
       } + $.i2c_params(config, 41, '0x29'),
     ],
   },
-  wifi_info_sensor_entities(config):: {
+  wifi_info_sensor(config):: {
     text_sensor+: [
       {
         platform: 'wifi_info',
@@ -302,7 +352,7 @@
       } + $.text_sensor_params(config),
     ],
   },
-  wifi_signal_sensor_entities(config):: {
+  wifi_signal_sensor(config):: {
     sensor+: [
       {
         platform: 'wifi_signal',
@@ -310,7 +360,7 @@
       } + $.sensor_update_params(config),
     ],
   },
-  xiaomi_miflora_sensor_entities(config):: {
+  xiaomi_miflora_sensor(config):: {
     sensor+: [
       {
         platform: 'xiaomi_hhccjcy01',
@@ -330,7 +380,7 @@
       } + $.sensor_params(config),
     ],
   },
-  xiaomi_mijia_sensor_entities(config):: {
+  xiaomi_mijia_sensor(config):: {
     sensor+: [
       {
         platform: 'xiaomi_lywsdcgq',
