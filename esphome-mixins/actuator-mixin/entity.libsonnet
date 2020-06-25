@@ -5,7 +5,7 @@ local allbot_src = {
 };
 
 {
-  gpio_relay_switch_entities(config):: {
+  gpio_relay_switch(config):: {
     local inverted = if std.objectHas(config, 'inverted') then config.inverted else false,
     switch+: [
       {
@@ -19,7 +19,7 @@ local allbot_src = {
       },
     ],
   },
-  gpio_pwm_fan_entities(config):: {
+  gpio_pwm_fan(config):: {
     fan+: [
       {
         platform: 'speed',
@@ -37,7 +37,7 @@ local allbot_src = {
       },
     ],
   },
-  allbot_robot_entities(config):: {
+  allbot_robot(config):: {
     api_service+: [
       {
         service: 'run_command',
@@ -75,7 +75,7 @@ local allbot_src = {
       },
     ],
   },
-  _servo_entities(config):: {
+  _servo(config):: {
     api_service+: [
       {
         service: 'set_angle_' + config.name,
@@ -110,7 +110,7 @@ local allbot_src = {
       },
     ],
   },
-  gpio_servo_entities(config):: $._servo_entities(config) + {
+  gpio_servo(config):: $._servo(config) + {
     output+: [
       {
         platform: 'esp8266_pwm',
@@ -120,7 +120,7 @@ local allbot_src = {
       },
     ],
   },
-  pca9685_servo_entities(config):: $._servo_entities(config) + {
+  pca9685_servo(config):: $._servo(config) + {
     output+: [
       {
         platform: 'pca9685',
@@ -130,7 +130,7 @@ local allbot_src = {
       },
     ],
   },
-  a4988_stepper_entities(config):: {
+  a4988_stepper(config):: {
     stepper+: [
       {
         platform: 'a4988',
@@ -144,7 +144,7 @@ local allbot_src = {
       },
     ],
   },
-  uln2003_stepper_entities(config):: {
+  uln2003_stepper(config):: {
     stepper+: [
       {
         platform: 'uln2003',

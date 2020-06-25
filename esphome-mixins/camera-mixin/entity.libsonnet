@@ -1,5 +1,5 @@
 {
-  ai_thinker_camera_entities(config):: {
+  ai_thinker_camera(config):: {
     esp32_camera: {
       external_clock: {
         pin: 'GPIO0',
@@ -26,7 +26,7 @@
       name: config.name,
     },
   },
-  ttgo_t_journal_camera_entities(config):: {
+  ttgo_t_journal_camera(config):: {
     esp32_camera: {
       external_clock: {
         pin: 'GPIO27',

@@ -94,15 +94,13 @@ private:
                 ec_data[EzoEcSensor::SALANITY]                = strtof(end, &end);
                 ec_data[EzoEcSensor::SPEC_GRAV_SEA_WATER]     = strtof(end, nullptr);
 
-                ESP_LOGD("ezo_ec", "EZO EC sensor measured EC = %.2f uS/cm", ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY]);
-                ESP_LOGD("ezo_ec", "EZO EC sensor measured TDS = %.2f ppm", ec_data[EzoEcSensor::TOTAL_DISOLVED_SOLIDS]);
-                ESP_LOGD("ezo_ec", "EZO EC sensor measured S = %.2f PSU", ec_data[EzoEcSensor::SALANITY]);
-                ESP_LOGD("ezo_ec", "EZO EC sensor measured SG = %.2f g/cm3", ec_data[EzoEcSensor::SPEC_GRAV_SEA_WATER]);
+                ESP_LOGD("ezo_ec", "Got electrical_conductivity=%.2fuS/cm total_dissolved_solids=%.2fppm salinity=%.2fPSU", ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY], ec_data[EzoEcSensor::TOTAL_DISOLVED_SOLIDS], ec_data[EzoEcSensor::SALANITY]);
+                // ESP_LOGD("ezo_ec", "EZO EC sensor measured SG = %.2f g/cm3", ec_data[EzoEcSensor::SPEC_GRAV_SEA_WATER]);
 
-                ec_sensor->publish_state(ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY]); 
-                tds_sensor->publish_state(ec_data[EzoEcSensor::TOTAL_DISOLVED_SOLIDS]); 
-                s_sensor->publish_state(ec_data[EzoEcSensor::SALANITY]); 
-                sg_sensor->publish_state(ec_data[EzoEcSensor::SPEC_GRAV_SEA_WATER]); 
+                ec_sensor->publish_state(ec_data[EzoEcSensor::ELECTRICAL_CONDUCTIVITY]);
+                tds_sensor->publish_state(ec_data[EzoEcSensor::TOTAL_DISOLVED_SOLIDS]);
+                s_sensor->publish_state(ec_data[EzoEcSensor::SALANITY]);
+                sg_sensor->publish_state(ec_data[EzoEcSensor::SPEC_GRAV_SEA_WATER]);
                 break;
             }
 

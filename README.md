@@ -2,13 +2,9 @@
 
 ## Jsonnet library for generating [ESPHome][esphome] configurations
 
-*NOTE: This project is in alpha stage. Everything may change significantly in
-the following updates.*
-
 `esphome-libsonnet` provides a simple way of defining ESPHome configuration. It
 leverages the data templating language [Jsonnet][jsonnet]. It enables you to
-write reusable components that you can use and reuse for multiple
-configurations.
+write atomic components that you can use and reuse for multiple configurations.
 
 ## Getting started
 
