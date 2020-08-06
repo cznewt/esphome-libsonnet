@@ -41,7 +41,7 @@ private:
     void measure();
     void receive_reading();
 public:
-    EzoPhSensor(int update_interval, float* t, uint8_t address);
+    EzoPhSensor(int update_interval, float* temperature_source, uint8_t address);
     void update() override;
 };
 
