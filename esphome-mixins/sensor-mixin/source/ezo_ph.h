@@ -275,7 +275,7 @@ void EzoPhSensor::receive_reading()
     {
         case Ezo_board::SUCCESS:
             ph_value = PH->get_last_received_reading();
-            ESP_LOGD("ezo_ph", "EZO pH sensor measured %.2f ph", ph_value);
+            ESP_LOGD("ezo_ph", "Got pH=%.2f", ph_value);
 
             publish_state(ph_value);
             break;
