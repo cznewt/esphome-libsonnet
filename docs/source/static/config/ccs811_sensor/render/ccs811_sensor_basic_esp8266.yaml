@@ -1,0 +1,25 @@
+esphome:
+  board: nodemcuv2
+  name: ccs811_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- address: '0x5a'
+  eco2:
+    accuracy_decimals: 1
+    id: test_sensor_eco2
+    name: test_sensor_eco2
+  i2c_id: i2c_1
+  platform: ccs811
+  tvoc:
+    accuracy_decimals: 1
+    id: test_sensor_tvoc
+    name: test_sensor_tvoc
+  update_interval: 5s

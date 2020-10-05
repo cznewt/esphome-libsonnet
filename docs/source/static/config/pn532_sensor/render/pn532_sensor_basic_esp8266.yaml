@@ -1,0 +1,25 @@
+binary_sensor:
+- id: tag-01
+  name: tag-01
+  platform: pn532
+  uid: 74-10-37-94
+- id: tag-02
+  name: tag-02
+  platform: pn532
+  uid: 34-5s7-32-10
+esphome:
+  board: nodemcuv2
+  name: pn532_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+pn532:
+  cs_pin: D2
+  id: test_sensor
+  platform: pn532
+  spi_id: spi_1
+  update_interval: 5s
+spi:
+  clk_pin: D1
+  miso_pin: D0

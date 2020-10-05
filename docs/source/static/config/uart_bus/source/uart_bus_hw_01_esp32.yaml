@@ -1,0 +1,8 @@
+device:
+  uart_bus_hw_01_esp32:
+    board: nodemcuv2
+    mixins:
+    - id: uart_1
+      kind: uart_bus
+      rx_pin: GPIO3
+      tx_pin: GPIO1

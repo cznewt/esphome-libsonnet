@@ -1,0 +1,31 @@
+binary_sensor:
+- device_class: power
+  name: test_plug_power
+  on_press:
+  - switch.toggle: test_plug_switch
+  pin:
+    inverted: 'yes'
+    mode: INPUT_PULLUP
+    number: GPIO0
+  platform: gpio
+esphome:
+  board: esp8285
+  name: sonoff_s20_vendor_name
+  platform: ESP8266
+light:
+- name: test_plug_light
+  output: test_plug_light
+  platform: monochromatic
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+output:
+- id: test_plug_light
+  inverted: true
+  pin: GPIO13
+  platform: esp8266_pwm
+switch:
+- id: test_plug_switch
+  name: test_plug_switch
+  pin: GPIO12
+  platform: gpio

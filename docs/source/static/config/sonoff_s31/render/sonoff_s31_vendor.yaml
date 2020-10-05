@@ -1,0 +1,46 @@
+binary_sensor:
+- device_class: power
+  name: sonoff_s31_vendor_power
+  on_press:
+  - switch.toggle: sonoff_s31_vendor_switch
+  pin:
+    inverted: 'yes'
+    mode: INPUT_PULLUP
+    number: GPIO0
+  platform: gpio
+esphome:
+  board: esp8285
+  name: sonoff_s31_vendor
+  platform: ESP8266
+light:
+- name: sonoff_s31_vendor_light
+  output: sonoff_s31_vendor_light
+  platform: monochromatic
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+output:
+- id: sonoff_s31_vendor_light
+  inverted: true
+  pin: GPIO13
+  platform: esp8266_pwm
+sensor:
+- current:
+    id: sonoff_s31_vendor_current
+    name: sonoff_s31_vendor_current
+  platform: cse7766
+  power:
+    id: sonoff_s31_vendor_power
+    name: sonoff_s31_vendor_power
+  update_interval: 5s
+  voltage:
+    id: sonoff_s31_vendor_voltage
+    name: sonoff_s31_vendor_voltage
+switch:
+- id: sonoff_s31_vendor_switch
+  name: sonoff_s31_vendor_switch
+  pin: GPIO12
+  platform: gpio
+uart:
+  baud_rate: 4800
+  rx_pin: RX

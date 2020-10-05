@@ -1,0 +1,24 @@
+esphome:
+  board: nodemcu-32s
+  name: ccs811_sensor_basic_esp32
+  platform: ESP32
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO22
+  sda: GPIO21
+logger:
+  level: DEBUG
+sensor:
+- address: '0x5a'
+  eco2:
+    accuracy_decimals: 1
+    id: test_sensor_eco2
+    name: test_sensor_eco2
+  i2c_id: i2c_1
+  platform: ccs811
+  tvoc:
+    accuracy_decimals: 1
+    id: test_sensor_tvoc
+    name: test_sensor_tvoc
+  update_interval: 5s

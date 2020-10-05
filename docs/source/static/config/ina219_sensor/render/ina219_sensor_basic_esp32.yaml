@@ -1,0 +1,24 @@
+esphome:
+  board: nodemcu-32s
+  name: ina219_sensor_basic_esp32
+  platform: ESP32
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO22
+  sda: GPIO21
+logger:
+  level: DEBUG
+sensor:
+- address: '0x40'
+  bus_voltage:
+    name: test_sensor_bus_voltage
+  current:
+    name: test_sensor_current
+  i2c_id: i2c_1
+  platform: ina219
+  power:
+    name: test_sensor_power
+  shunt_voltage:
+    name: test_sensor_shunt_voltage
+  update_interval: 5s

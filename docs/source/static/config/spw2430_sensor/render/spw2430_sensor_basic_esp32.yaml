@@ -1,0 +1,12 @@
+esphome:
+  board: nodemcu-32s
+  name: spw2430_sensor_basic_esp32
+  platform: ESP32
+logger:
+  level: DEBUG
+sensor:
+- id: test_sensor_sound_level
+  name: test_sensor_sound_level
+  pin: GPIO22
+  platform: adc
+  update_interval: 5s

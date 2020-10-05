@@ -1,0 +1,25 @@
+esphome:
+  board: nodemcuv2
+  name: ina219_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- address: '0x40'
+  bus_voltage:
+    name: test_sensor_bus_voltage
+  current:
+    name: test_sensor_current
+  i2c_id: i2c_1
+  platform: ina219
+  power:
+    name: test_sensor_power
+  shunt_voltage:
+    name: test_sensor_shunt_voltage
+  update_interval: 5s

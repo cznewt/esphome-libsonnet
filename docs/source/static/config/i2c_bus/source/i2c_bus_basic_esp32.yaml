@@ -1,0 +1,8 @@
+device:
+  i2c_bus_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+    - clock_pin: GPIO22
+      data_pin: GPIO21
+      id: i2c_1
+      kind: i2c_bus

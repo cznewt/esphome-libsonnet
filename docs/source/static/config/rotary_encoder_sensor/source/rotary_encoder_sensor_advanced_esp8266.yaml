@@ -1,0 +1,11 @@
+device:
+  rotary_encoder_sensor_advanced_esp8266:
+    board: nodemcuv2
+    mixins:
+    - kind: rotary_encoder_sensor
+      max_value: 100
+      min_value: 20
+      name: test_sensor
+      pin_a: D1
+      pin_b: D2
+      pin_reset: D3

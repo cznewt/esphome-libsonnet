@@ -1,0 +1,15 @@
+esphome:
+  board: nodemcuv2
+  name: uln2003_stepper_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+stepper:
+- id: test_motor
+  max_speed: 250 steps/s
+  pin_a: D0
+  pin_b: D1
+  pin_c: D2
+  pin_d: D3
+  platform: uln2003

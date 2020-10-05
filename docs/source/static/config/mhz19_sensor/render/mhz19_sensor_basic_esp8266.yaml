@@ -1,0 +1,21 @@
+esphome:
+  board: nodemcuv2
+  name: mhz19_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- automatic_baseline_calibration: false
+  co2:
+    accuracy_decimals: 1
+    name: test_sensor_co2
+  platform: mhz19
+  temperature:
+    accuracy_decimals: 1
+    name: test_sensor_temperature
+  update_interval: 5s
+uart:
+  baud_rate: 9600
+  rx_pin: D0
+  tx_pin: D1

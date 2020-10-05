@@ -1,0 +1,12 @@
+binary_sensor:
+- name: test_sensor_sensor
+  pin:
+    number: 17
+  platform: gpio
+esphome:
+  board: nodemcuv2
+  name: gpio_binary_sensor_debounce_on_filter
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG

@@ -1,0 +1,9 @@
+device:
+  a4988_stepper_basic:
+    board: nodemcuv2
+    mixins:
+    - dir_pin: D1
+      kind: a4988_stepper
+      max_speed: 250
+      name: test_motor
+      step_pin: D0

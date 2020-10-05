@@ -1,0 +1,11 @@
+device:
+  dallas_ds18_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - id: dallas_1
+      kind: dallas_bus
+      pin: D1
+    - address: 2017612646464694824
+      bus: dallas_1
+      kind: dallas_ds18_sensor
+      name: test_sensor

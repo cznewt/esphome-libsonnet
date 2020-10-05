@@ -1,0 +1,16 @@
+esphome:
+  board: d1_mini_pro
+  name: dht11_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- humidity:
+    name: test_sensor_humidity
+  model: DHT11
+  pin: D5
+  platform: dht
+  temperature:
+    name: test_sensor_temperature
+  update_interval: 5s

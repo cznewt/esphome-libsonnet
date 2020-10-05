@@ -1,0 +1,11 @@
+esphome:
+  board: nodemcuv2
+  name: uart_bus_hw_02_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+uart:
+  baud_rate: 9600
+  rx_pin: GPIO13
+  tx_pin: GPIO15

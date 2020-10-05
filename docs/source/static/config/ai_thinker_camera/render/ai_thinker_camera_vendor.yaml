@@ -1,0 +1,35 @@
+api:
+  password: api-pass
+esp32_camera:
+  data_pins:
+  - GPIO5
+  - GPIO18
+  - GPIO19
+  - GPIO21
+  - GPIO36
+  - GPIO39
+  - GPIO34
+  - GPIO35
+  external_clock:
+    frequency: 20MHz
+    pin: GPIO0
+  href_pin: GPIO23
+  i2c_pins:
+    scl: GPIO27
+    sda: GPIO26
+  name: test_camera
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+  vsync_pin: GPIO25
+esphome:
+  board: esp32cam
+  name: ai_thinker_camera_vendor
+  platform: ESP32
+logger:
+  level: DEBUG
+wifi:
+  domain: .local
+  fast_connect: true
+  networks:
+  - password: wlan-key
+    ssid: wlan-essid

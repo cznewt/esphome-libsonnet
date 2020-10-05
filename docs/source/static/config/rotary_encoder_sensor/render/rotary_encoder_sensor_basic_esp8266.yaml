@@ -1,0 +1,14 @@
+esphome:
+  board: nodemcuv2
+  name: rotary_encoder_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- name: test_sensor
+  pin_a: D1
+  pin_b: D2
+  pin_reset: D3
+  platform: rotary_encoder
+  update_interval: 5s

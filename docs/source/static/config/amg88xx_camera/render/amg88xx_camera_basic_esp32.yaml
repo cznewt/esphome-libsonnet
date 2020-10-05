@@ -1,0 +1,237 @@
+esphome:
+  board: nodemcu-32s
+  includes:
+  - ../includes/amg88xx.h
+  libraries:
+  - SparkFun GridEYE Arduino Library
+  name: amg88xx_camera_basic_esp32
+  platform: ESP32
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO22
+  sda: GPIO21
+logger:
+  level: DEBUG
+sensor:
+- lambda: "auto amg88xx_sensor = new AMG88xxSensor(3000);\nApp.register_component(amg88xx_sensor);\n\
+    return {\n  amg88xx_sensor->device_temperature,\n  amg88xx_sensor->pixel_00,\n\
+    \  amg88xx_sensor->pixel_01,\n  amg88xx_sensor->pixel_02,\n  amg88xx_sensor->pixel_03,\n\
+    \  amg88xx_sensor->pixel_04,\n  amg88xx_sensor->pixel_05,\n  amg88xx_sensor->pixel_06,\n\
+    \  amg88xx_sensor->pixel_07,\n  amg88xx_sensor->pixel_08,\n  amg88xx_sensor->pixel_09,\n\
+    \  amg88xx_sensor->pixel_10,\n  amg88xx_sensor->pixel_11,\n  amg88xx_sensor->pixel_12,\n\
+    \  amg88xx_sensor->pixel_13,\n  amg88xx_sensor->pixel_14,\n  amg88xx_sensor->pixel_15,\n\
+    \  amg88xx_sensor->pixel_16,\n  amg88xx_sensor->pixel_17,\n  amg88xx_sensor->pixel_18,\n\
+    \  amg88xx_sensor->pixel_19,\n  amg88xx_sensor->pixel_20,\n  amg88xx_sensor->pixel_21,\n\
+    \  amg88xx_sensor->pixel_22,\n  amg88xx_sensor->pixel_23,\n  amg88xx_sensor->pixel_24,\n\
+    \  amg88xx_sensor->pixel_25,\n  amg88xx_sensor->pixel_26,\n  amg88xx_sensor->pixel_27,\n\
+    \  amg88xx_sensor->pixel_28,\n  amg88xx_sensor->pixel_29,\n  amg88xx_sensor->pixel_30,\n\
+    \  amg88xx_sensor->pixel_31,\n  amg88xx_sensor->pixel_32,\n  amg88xx_sensor->pixel_33,\n\
+    \  amg88xx_sensor->pixel_34,\n  amg88xx_sensor->pixel_35,\n  amg88xx_sensor->pixel_36,\n\
+    \  amg88xx_sensor->pixel_37,\n  amg88xx_sensor->pixel_38,\n  amg88xx_sensor->pixel_39,\n\
+    \  amg88xx_sensor->pixel_40,\n  amg88xx_sensor->pixel_41,\n  amg88xx_sensor->pixel_42,\n\
+    \  amg88xx_sensor->pixel_43,\n  amg88xx_sensor->pixel_44,\n  amg88xx_sensor->pixel_45,\n\
+    \  amg88xx_sensor->pixel_46,\n  amg88xx_sensor->pixel_47,\n  amg88xx_sensor->pixel_48,\n\
+    \  amg88xx_sensor->pixel_49,\n  amg88xx_sensor->pixel_50,\n  amg88xx_sensor->pixel_51,\n\
+    \  amg88xx_sensor->pixel_52,\n  amg88xx_sensor->pixel_53,\n  amg88xx_sensor->pixel_54,\n\
+    \  amg88xx_sensor->pixel_55,\n  amg88xx_sensor->pixel_56,\n  amg88xx_sensor->pixel_57,\n\
+    \  amg88xx_sensor->pixel_58,\n  amg88xx_sensor->pixel_59,\n  amg88xx_sensor->pixel_60,\n\
+    \  amg88xx_sensor->pixel_61,\n  amg88xx_sensor->pixel_62,\n  amg88xx_sensor->pixel_63\n\
+    };\n"
+  platform: custom
+  sensors:
+  - accuracy_decimals: 2
+    name: test_sensor_device_temperature
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_00
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_01
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_02
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_03
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_04
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_05
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_06
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_07
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_08
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_09
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_10
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_11
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_12
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_13
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_14
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_15
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_16
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_17
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_18
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_19
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_20
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_21
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_22
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_23
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_24
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_25
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_26
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_27
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_28
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_29
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_30
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_31
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_32
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_33
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_34
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_35
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_36
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_37
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_38
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_39
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_40
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_41
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_42
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_43
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_44
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_45
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_46
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_47
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_48
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_49
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_50
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_51
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_52
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_53
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_54
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_55
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_56
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_57
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_58
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_59
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_60
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_61
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_62
+    unit_of_measurement: "\xB0C"
+  - accuracy_decimals: 2
+    name: test_sensor_pixel_63
+    unit_of_measurement: "\xB0C"

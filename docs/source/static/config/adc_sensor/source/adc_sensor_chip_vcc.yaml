@@ -1,0 +1,7 @@
+device:
+  adc_sensor_chip_vcc:
+    board: nodemcuv2
+    mixins:
+    - kind: adc_sensor
+      name: test_sensor
+      pin: VCC

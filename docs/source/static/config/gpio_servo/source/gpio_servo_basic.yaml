@@ -1,0 +1,7 @@
+device:
+  gpio_servo_basic:
+    board: nodemcuv2
+    mixins:
+    - kind: gpio_servo
+      name: test_motor
+      pin: D1

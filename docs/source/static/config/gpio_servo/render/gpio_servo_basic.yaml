@@ -1,0 +1,15 @@
+esphome:
+  board: nodemcuv2
+  name: gpio_servo_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+output:
+- frequency: 50Hz
+  id: test_motor_output
+  pin: D1
+  platform: esp8266_pwm
+servo:
+- id: test_motor
+  output: test_motor_output

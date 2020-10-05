@@ -1,0 +1,15 @@
+esphome:
+  board: nodemcuv2
+  name: uln2003_stepper_advanced
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+stepper:
+- acceleration: inf
+  deceleration: inf
+  dir_pin: D1
+  id: test_motor
+  max_speed: 250 steps/s
+  platform: a4988
+  step_pin: D0

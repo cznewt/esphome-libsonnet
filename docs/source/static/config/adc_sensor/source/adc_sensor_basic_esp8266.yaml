@@ -1,0 +1,7 @@
+device:
+  adc_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - kind: adc_sensor
+      name: test_sensor
+      pin: A0

@@ -1,0 +1,15 @@
+esphome:
+  board: nodemcuv2
+  name: tlc59208f_board_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+tlc59208f:
+- address: '0x10'
+  id: tlc59208f_1

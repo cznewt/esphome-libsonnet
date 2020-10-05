@@ -1,0 +1,12 @@
+device:
+  max6675_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - clk_pin: D1
+      id: spi_1
+      kind: spi_bus
+      miso_pin: D0
+    - bus: spi_1
+      cs_pin: D2
+      kind: max6675_sensor
+      name: test_sensor

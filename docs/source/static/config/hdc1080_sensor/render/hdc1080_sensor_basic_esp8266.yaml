@@ -1,0 +1,21 @@
+esphome:
+  board: nodemcuv2
+  name: hdc1080_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- address: '0x40'
+  humidity:
+    name: test_sensor_humidity
+  i2c_id: i2c_1
+  platform: hdc1080
+  temperature:
+    name: test_sensor_temperature
+  update_interval: 5s

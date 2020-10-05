@@ -1,0 +1,15 @@
+esphome:
+  board: nodemcu-32s
+  name: i2c_bus_multiple_esp32
+  platform: ESP32
+i2c:
+- id: ic2_1
+  scan: true
+  scl: 13
+  sda: 16
+- id: i2c_2
+  scan: true
+  scl: 14
+  sda: 15
+logger:
+  level: DEBUG

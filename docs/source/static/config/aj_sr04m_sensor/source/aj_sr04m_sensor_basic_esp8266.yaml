@@ -1,0 +1,8 @@
+device:
+  aj_sr04m_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - echo_pin: D1
+      kind: aj_sr04m_sensor
+      name: test_sensor
+      trigger_pin: D2

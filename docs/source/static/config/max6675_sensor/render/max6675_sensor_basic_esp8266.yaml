@@ -1,0 +1,16 @@
+esphome:
+  board: nodemcuv2
+  name: max6675_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- cs_pin: D2
+  name: test_sensor_temperature
+  platform: max6675
+  spi_id: spi_1
+  update_interval: 5s
+spi:
+  clk_pin: D1
+  miso_pin: D0

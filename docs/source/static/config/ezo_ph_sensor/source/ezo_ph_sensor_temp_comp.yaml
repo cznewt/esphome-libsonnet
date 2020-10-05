@@ -1,0 +1,13 @@
+device:
+  ezo_ph_sensor_temp_comp:
+    board: nodemcuv2
+    mixins:
+    - clock_pin: GPIO5
+      data_pin: GPIO4
+      id: i2c_1
+      kind: i2c_bus
+    - address: 99
+      bus: i2c_1
+      kind: ezo_ph_sensor
+      name: test_sensor
+      update_interval: 10s

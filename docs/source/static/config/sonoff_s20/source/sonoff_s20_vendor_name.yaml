@@ -1,0 +1,6 @@
+device:
+  sonoff_s20_vendor_name:
+    board: esp8285
+    mixins:
+    - kind: sonoff_s20
+      name: test_plug

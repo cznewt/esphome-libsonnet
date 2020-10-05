@@ -1,0 +1,7 @@
+device:
+  dallas_bus_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - id: dallas_1
+      kind: dallas_bus
+      pin: D1
