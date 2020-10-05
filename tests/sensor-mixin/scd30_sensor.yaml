@@ -1,0 +1,21 @@
+device:
+  scd30_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: i2c_1
+        kind: i2c_bus
+        clock_pin: D5
+        data_pin: D4
+      - name: test_sensor
+        kind: scd30_sensor
+        bus: i2c_1
+  scd30_sensor_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+      - id: i2c_1
+        kind: i2c_bus
+        clock_pin: GPIO22
+        data_pin: GPIO21
+      - name: test_sensor
+        kind: scd30_sensor
+        bus: i2c_1

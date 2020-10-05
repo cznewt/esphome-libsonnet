@@ -1,0 +1,9 @@
+device:
+  spi_bus_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+      - id: spi_1
+        kind: spi_bus
+        clk_pin: GPIO21
+        mosi_pin: GPIO22
+        miso_pin: GPIO23

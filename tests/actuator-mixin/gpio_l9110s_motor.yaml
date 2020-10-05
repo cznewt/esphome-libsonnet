@@ -1,0 +1,9 @@
+device:
+  gpio_l9110s_motor_basic:
+    board: nodemcuv2
+    mixins:
+      - name: test_motor
+        kind: gpio_l9110s_motor
+        power_pin: D1
+        acw_pin: D2
+        cw_pin: D3

@@ -1,0 +1,21 @@
+device:
+  adc_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - name: test_sensor
+        kind: adc_sensor
+        pin: A0
+  adc_sensor_multiply_filter:
+    board: nodemcuv2
+    mixins:
+      - name: test_sensor
+        kind: adc_sensor
+        pin: 17
+        filters:
+          - multiply: 3.3
+  adc_sensor_chip_vcc:
+    board: nodemcuv2
+    mixins:
+      - name: test_sensor
+        kind: adc_sensor
+        pin: VCC

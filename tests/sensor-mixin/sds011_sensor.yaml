@@ -1,0 +1,21 @@
+device:
+  sds011_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: uart_1
+        kind: uart_bus
+        tx_pin: GPIO1
+        rx_pin: GPIO3
+      - name: test_sensor
+        kind: sds011_sensor
+        bus: uart_1
+  sds011_sensor_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+      - id: uart_1
+        kind: uart_bus
+        tx_pin: GPIO1
+        rx_pin: GPIO3
+      - name: test_sensor
+        kind: sds011_sensor
+        bus: uart_1

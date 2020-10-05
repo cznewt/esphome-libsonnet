@@ -1,0 +1,5 @@
+device:
+  sonoff_mini_vendor:
+    board: esp8285
+    mixins:
+      - kind: sonoff_mini

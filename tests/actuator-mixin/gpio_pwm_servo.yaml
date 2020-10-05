@@ -1,0 +1,11 @@
+device:
+  gpio_pwm_servo_basic_esp8266:
+    board: nodemcuv2
+    networks:
+      - essid: wlan-essid
+        key: wlan-key
+        api_password: api-pass
+    mixins:
+      - name: test_motor
+        kind: gpio_pwm_servo
+        pin: D1

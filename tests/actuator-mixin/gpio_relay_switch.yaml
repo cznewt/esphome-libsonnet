@@ -1,0 +1,14 @@
+device:
+  gpio_relay_switch_basic:
+    board: nodemcuv2
+    mixins:
+      - name: test_switch
+        kind: gpio_relay_switch
+        pin: D3
+  gpio_relay_switch_inverted:
+    board: nodemcuv2
+    mixins:
+      - name: test_switch
+        kind: gpio_relay_switch
+        pin: D3
+        inverted: true

@@ -1,0 +1,22 @@
+device:
+  uart_bus_hw_01_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: uart_1
+        kind: uart_bus
+        tx_pin: GPIO1
+        rx_pin: GPIO3
+  uart_bus_hw_02_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: uart_1
+        kind: uart_bus
+        tx_pin: GPIO15
+        rx_pin: GPIO13
+  uart_bus_hw_01_esp32:
+    board: nodemcuv2
+    mixins:
+      - id: uart_1
+        kind: uart_bus
+        tx_pin: GPIO1
+        rx_pin: GPIO3

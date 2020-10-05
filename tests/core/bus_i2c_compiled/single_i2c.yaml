@@ -1,4 +1,0 @@
-esphome:
-  board: nodemcuv2
-  name: single_i2c
-  platform: ESP8266

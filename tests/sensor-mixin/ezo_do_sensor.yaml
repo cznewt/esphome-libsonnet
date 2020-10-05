@@ -1,0 +1,13 @@
+device:
+  ezo_do_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: i2c_1
+        kind: i2c_bus
+        clock_pin: GPIO5
+        data_pin: GPIO4
+      - name: test_sensor
+        kind: ezo_do_sensor
+        address: 0x61
+        bus: i2c_1
+        update_interval: 10s

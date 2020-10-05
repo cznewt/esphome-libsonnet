@@ -1,0 +1,5 @@
+device:
+  sonoff_4ch_pro_vendor:
+    board: esp8285
+    mixins:
+      - kind: sonoff_4ch_pro

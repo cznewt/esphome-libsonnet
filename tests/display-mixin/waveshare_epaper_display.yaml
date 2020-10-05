@@ -1,0 +1,52 @@
+device:
+  waveshare_epaper_display_basic:
+    board: nodemcu-32s
+    mixins:
+      - name: spi_1
+        kind: spi_bus
+        clk_pin: GPIO18
+        mosi_pin: GPIO23
+      - name: opensans
+        kind: ttf_font
+        size: 20
+        file: ../fonts/OpenSans-Regular.ttf
+      - name: display_output
+        kind: waveshare_epaper_display
+        model: 2.90in
+        bus: spi_1
+        cs_pin: GPIO5
+        dc_pin: GPIO22
+        busy_pin: GPIO4
+        reset_pin: GPIO21
+        full_update_every: 3600
+        lambda: |-
+          it.print(0, 0, id(opensans), "Hello World!");
+  waveshare_epaper_display_pages:
+    board: nodemcu-32s
+    mixins:
+      - name: spi_1
+        kind: spi_bus
+        clk_pin: GPIO18
+        mosi_pin: GPIO23
+      - name: opensans
+        kind: ttf_font
+        size: 20
+        file: ../fonts/OpenSans-Regular.ttf
+      - name: display_output
+        kind: waveshare_epaper_display
+        model: 2.90in
+        bus: spi_1
+        cs_pin: GPIO5
+        dc_pin: GPIO22
+        busy_pin: GPIO4
+        reset_pin: GPIO21
+        rotation: '90'
+        cycle_interval: 30s
+        full_update_every: 3600
+        pages:
+          - id: page1
+            lambda: |-
+              it.print(0, 0, id(opensans), "Hello World!");
+          - id: page2
+            lambda: |-
+              it.print(0, 0, id(opensans), "Good Bye!");
