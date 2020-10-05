@@ -1,0 +1,10 @@
+device:
+  ttgo_t_journal_camera_vendor:
+    networks:
+      - essid: wlan-essid
+        key: wlan-key
+        api_password: api-pass
+    board: esp32dev
+    mixins:
+      - kind: ttgo_t_journal_camera
+        name: test_camera

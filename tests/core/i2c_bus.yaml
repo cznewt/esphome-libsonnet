@@ -1,0 +1,27 @@
+device:
+  i2c_bus_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: i2c_1
+        kind: i2c_bus
+        clock_pin: GPIO5 # D1
+        data_pin: GPIO4 # D2
+  i2c_bus_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+      - id: i2c_1
+        kind: i2c_bus
+        clock_pin: GPIO22
+        data_pin: GPIO21
+  i2c_bus_multiple_esp32:
+    board: nodemcu-32s
+    mixins:
+      - id: ic2_1
+        kind: i2c_bus
+        clock_pin: 13
+        data_pin: 16
+      - id: i2c_2
+        kind: i2c_bus
+        clock_pin: 14
+        data_pin: 15
+      

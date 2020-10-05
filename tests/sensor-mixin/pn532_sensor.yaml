@@ -1,0 +1,17 @@
+device:
+  pn532_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: spi_1
+        kind: spi_bus
+        miso_pin: D0
+        clk_pin: D1
+      - name: test_sensor
+        kind: pn532_sensor
+        bus: spi_1
+        cs_pin: D2
+        tags:
+        - name: tag-01
+          uid: 74-10-37-94
+        - name: tag-02
+          uid: 34-5s7-32-10

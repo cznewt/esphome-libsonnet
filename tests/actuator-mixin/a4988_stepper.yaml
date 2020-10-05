@@ -1,0 +1,19 @@
+device:
+  a4988_stepper_basic:
+    board: nodemcuv2
+    mixins:
+      - name: test_motor
+        kind: a4988_stepper
+        step_pin: D0
+        dir_pin: D1
+        max_speed: 250
+  uln2003_stepper_advanced:
+    board: nodemcuv2
+    mixins:
+      - name: test_motor
+        kind: a4988_stepper
+        step_pin: D0
+        dir_pin: D1
+        max_speed: 250
+        acceleration: inf
+        deceleration: inf

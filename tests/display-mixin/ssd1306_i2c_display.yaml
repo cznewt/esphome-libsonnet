@@ -1,0 +1,47 @@
+device:
+  ssd1306_i2c_display_128x64_esp32:
+    board: nodemcu-32s
+    mixins:
+      - name: i2c_1
+        kind: i2c_bus
+        clock_pin: GPIO22
+        data_pin: GPIO21
+      - name: opensans
+        kind: ttf_font
+        size: 20
+        file: ../fonts/OpenSans-Regular.ttf
+      - name: display_output
+        kind: ssd1306_i2c_display
+        model: SSD1306
+        display_size: 128x64
+        cycle_interval: 10s
+        pages:
+          - id: page1
+            lambda: |-
+              it.print(0, 0, id(opensans), "Hello World!");
+          - id: page2
+            lambda: |-
+              it.print(0, 0, id(opensans), "Good Bye!");
+  ssd1306_i2c_display_128x32_esp32:
+    board: nodemcu-32s
+    mixins:
+      - name: i2c_1
+        kind: i2c_bus
+        clock_pin: GPIO22
+        data_pin: GPIO21
+      - name: opensans
+        kind: ttf_font
+        size: 20
+        file: ../fonts/OpenSans-Regular.ttf
+      - name: display_output
+        kind: ssd1306_i2c_display
+        model: SSD1306
+        display_size: 128x32
+        cycle_interval: 10s
+        pages:
+          - id: page1
+            lambda: |-
+              it.print(0, 0, id(opensans), "Hello World!");
+          - id: page2
+            lambda: |-
+              it.print(0, 0, id(opensans), "Good Bye!");

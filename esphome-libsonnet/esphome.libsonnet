@@ -118,15 +118,29 @@ local board_platforms = {
       name: std.strReplace(config.name, '-', '_'),
       board: if std.objectHas(config, 'board') then config.board else 'nodemcuv2',
       platform: board_platforms[if std.objectHas(config, 'board') then config.board else 'nodemcuv2'],
-      comment: if std.objectHas(config, 'address') then 'IP: ' + config.address else '',
-      includes: std.set(
+      [if std.objectHas(config, 'description') || std.objectHas(config, 'address') then 'comment']:
+        if std.objectHas(config, 'description') then config.description else
+          if std.objectHas(config, 'address') then 'IP: ' + config.address else '',
+      [if std.length(std.set(
+        std.flattenArrays([
+          mixins._config.entity[mixin.kind](mixin).includes
+          for mixin in config.mixins
+          if std.objectHas(mixins._config.entity[mixin.kind](mixin), 'includes')
+        ])
+      )) > 0 then 'includes']: std.set(
         std.flattenArrays([
           mixins._config.entity[mixin.kind](mixin).includes
           for mixin in config.mixins
           if std.objectHas(mixins._config.entity[mixin.kind](mixin), 'includes')
         ])
       ),
-      libraries: std.set(
+      [if std.length(std.set(
+        std.flattenArrays([
+          mixins._config.entity[mixin.kind](mixin).libraries
+          for mixin in config.mixins
+          if std.objectHas(mixins._config.entity[mixin.kind](mixin), 'libraries')
+        ])
+      )) > 0 then 'libraries']: std.set(
         std.flattenArrays([
           mixins._config.entity[mixin.kind](mixin).libraries
           for mixin in config.mixins

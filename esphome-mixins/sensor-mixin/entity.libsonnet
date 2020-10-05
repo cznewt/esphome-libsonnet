@@ -3,28 +3,55 @@
     [if std.objectHas(config, 'icon') then 'icon']: config.icon,
     [if std.objectHas(config, 'on_value') then 'on_value']: config.on_value,
   },
+  /**
+   * Sensor Parameters
+   *
+   * @param config.unit_of_measurement (optional, string) Unit of measurement the sensor should advertise its values with.
+   * @param config.icon (optional) Unit of measurement the sensor should advertise its values with.
+   * @param config.accuracy_decimals (optional, int) Accuracy of decimals to use when reporting values.
+   * @param config.filters (optional) Filters to use for some basic transforming of values.
+   */
   sensor_params(config):: {
     [if std.objectHas(config, 'unit_of_measurement') then 'unit_of_measurement']: config.unit_of_measurement,
     [if std.objectHas(config, 'icon') then 'icon']: config.icon,
     [if std.objectHas(config, 'accuracy_decimals') then 'accuracy_decimals']: config.accuracy_decimals,
     [if std.objectHas(config, 'expire_after') then 'expire_after']: config.expire_after,
+    [if std.objectHas(config, 'force_update') then 'force_update']: config.force_update,
+    [if std.objectHas(config, 'internal') then 'internal']: config.internal,
     [if std.objectHas(config, 'filters') then 'filters']: config.filters,
   },
   sensor_update_params(config):: {
     update_interval: if std.objectHas(config, 'update_interval') then config.update_interval else '5s',
   } + $.sensor_params(config),
   i2c_params(config, address, address_str=null):: {
+  /**
+   * I²C Device Parameterss
+   *
+   * @param config.bus (optional) ID for this I²C bus if you need multiple I²C buses. Defaults to `i2c_1`.
+   * @param config.address (optional) I²C address of the sensor.
+   */
     [if std.objectHas(config, 'bus') then 'i2c_id']: config.bus,
     address: std.format(
       '0x%x',
       if std.objectHas(config, 'address') then config.address else address
     ),
   } + $.sensor_update_params(config),
+  /**
+   * BH1750 Ambient Light Sensor
+   * https://esphome.io/components/sensor/tsl2561.html
+   *
+   * @param config.name (required) Name of the light sensor.
+   * @param config.resolution (optional) The resolution of the sensor in lx. One of `4.0`, `1.0`, `0.5`. Defaults to `0.5` (the maximum resolution).
+   * @param config.interval (optional) The interval to check the sensor. Defaults to `60s`.
+   * @param config.bus (optional) ID for this I²C bus if you need multiple I²C buses. Defaults to `i2c_1`.
+   * @param config.address (optional) I²C address of the sensor. Defaults to `0x23` (address if address pin is pulled low). If the address pin is pulled high, the address is `0x5C`.
+   */
   bh1750_sensor(config):: {
     sensor+: [
       {
         platform: 'bh1750',
         name: '%(name)s_light_intensity' % config,
+        [if std.objectHas(config, 'resolution') then 'resolution']: config.resolution,
       } + $.i2c_params(config, 35, '0x23'),
     ],
   },

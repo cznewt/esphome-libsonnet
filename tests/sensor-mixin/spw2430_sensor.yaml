@@ -1,0 +1,7 @@
+device:
+  spw2430_sensor_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+      - name: test_sensor
+        kind: spw2430_sensor
+        pin: GPIO22

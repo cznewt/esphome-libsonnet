@@ -1,0 +1,42 @@
+device:
+  dallas_ds18_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+      - id: dallas_1
+        kind: dallas_bus
+        pin: D1
+      - name: test_sensor
+        kind: dallas_ds18_sensor
+        bus: dallas_1
+        address: 0x1c0000031edd2a28
+  dallas_ds18_sensor_multiple_sensors:
+    board: nodemcuv2
+    mixins:
+      - id: dallas_1
+        kind: dallas_bus
+        pin: D1
+      - name: test_sensor_1
+        bus: dallas_1
+        kind: dallas_ds18_sensor
+        address: 0x1c0000031edd2a28
+      - name: test_sensor_2
+        bus: dallas_1
+        kind: dallas_ds18_sensor
+        address: 0x1c0000031edd2a18
+  dallas_ds18_sensor_multiple_buses:
+    board: nodemcuv2
+    mixins:
+      - id: dallas_1
+        kind: dallas_bus
+        pin: D1
+      - id: dallas_2
+        kind: dallas_bus
+        pin: D2
+      - name: test_sensor_1
+        bus: dallas_1
+        kind: dallas_ds18_sensor
+        address: 0x1c0000031edd2a28
+      - name: test_sensor_2
+        bus: dallas_2
+        kind: dallas_ds18_sensor
+        address: 0x1c0000031edd2a18

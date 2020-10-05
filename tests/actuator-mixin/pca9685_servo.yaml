@@ -1,0 +1,20 @@
+device:
+  pca9685_servo_basic_esp8266:
+    board: nodemcuv2
+    networks:
+      - essid: wlan-essid
+        key: wlan-key
+        api_password: api-pass
+    mixins:
+      - name: i2c_1
+        kind: i2c_bus
+        clock_pin: D1
+        data_pin: D2
+      - name: pca_1
+        kind: pca9685_board
+        bus: i2c_1
+        address: 0x40
+      - name: test_motor
+        kind: pca9685_servo
+        bus: pca_1
+        channel: 0

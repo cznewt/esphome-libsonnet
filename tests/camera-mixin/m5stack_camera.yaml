@@ -1,0 +1,10 @@
+device:
+  m5stack_camera_vendor:
+    networks:
+      - essid: wlan-essid
+        key: wlan-key
+        api_password: api-pass
+    board: m5stack-core-esp32
+    mixins:
+      - kind: m5stack_camera
+        name: test_camera

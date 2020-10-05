@@ -1,0 +1,22 @@
+device:
+  uln2003_stepper_basic:
+    board: nodemcuv2
+    mixins:
+      - name: test_motor
+        kind: uln2003_stepper
+        pin_a: D0
+        pin_b: D1
+        pin_c: D2
+        pin_d: D3
+  uln2003_stepper_advanced:
+    board: nodemcuv2
+    mixins:
+      - name: test_motor
+        kind: uln2003_stepper
+        pin_a: D0
+        pin_b: D1
+        pin_c: D2
+        pin_d: D3
+        max_speed: 250 steps/s
+        acceleration: inf
+        deceleration: inf

@@ -1,4 +1,10 @@
 {
+  /**
+   * Ai-Thinker Camera
+   * https://esphome.io/components/esp32_camera.html#configuration-for-ai-thinker-camera
+   *
+   * @param config.name (required) Name of the camera.
+   */
   ai_thinker_camera(config):: {
     esp32_camera: {
       external_clock: {
@@ -26,6 +32,12 @@
       name: config.name,
     },
   },
+  /**
+   * TTGO T-Journal Camera
+   * https://esphome.io/components/esp32_camera.html#configuration-for-ttgo-t-journal
+   *
+   * @param config.name (required) Name of the camera.
+   */
   ttgo_t_journal_camera(config):: {
     esp32_camera: {
       external_clock: {
@@ -49,8 +61,15 @@
       vsync_pin: 'GPIO22',
       href_pin: 'GPIO26',
       pixel_clock_pin: 'GPIO21',
+      name: config.name,
     },
   },
+  /**
+   * TTGO T-Camera V17 Camera
+   * https://esphome.io/components/esp32_camera.html#configuration-for-ttgo-t-camera-v17
+   *
+   * @param config.name (required) Name of the camera.
+   */
   ttgo_t_camera_v17_camera(config):: {
     esp32_camera: {
       external_clock: {
@@ -76,6 +95,7 @@
       pixel_clock_pin: 'GPIO19',
       vertical_flip: true,
       horizontal_mirror: true,
+      name: config.name,
     },
   },
 }

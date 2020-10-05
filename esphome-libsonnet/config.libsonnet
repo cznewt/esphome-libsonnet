@@ -8,6 +8,7 @@ local esphome = {
 };
 
 local list_domains = [
+  'ads1115',
   'api_service',
   'binary_sensor',
   'climate',
@@ -17,9 +18,12 @@ local list_domains = [
   'fan',
   'font',
   'i2c',
+  'image',
+  'interval',
   'light',
   'output',
   'pca9685',
+  'pcf8574',
   'power_supply',
   'sensor',
   'servo',
@@ -33,6 +37,7 @@ local list_domains = [
 local single_domains = [
   'esp32_ble_tracker',
   'esp32_camera',
+  'pn532',
   'spi',
   'status_led',
   'uart',
@@ -74,14 +79,14 @@ local core_defaults = {
           esphome.mqtt.new(devices[device] { name: device }),
         [if std.objectHas(devices[device], 'networks') then 'wifi']:
           esphome.wifi.new(devices[device] { name: device } + core_defaults),
-        [if (core_defaults + devices[device] + devices[device].networks[0]).api_password != null then 'api']: {
+        [if std.objectHas(devices[device], 'networks') && (core_defaults + devices[device] + devices[device].networks[0]).api_password != null then 'api']: {
           password: (devices[device] + devices[device].networks[0]).api_password,
           [if std.objectHas(devices[device], 'api_port') then 'port']:
             devices[device].api_port,
           [if std.length(device_list_domains['api_service']) > 0 then 'services']:
             device_list_domains['api_service']
         },
-        [if (core_defaults + devices[device] + devices[device].networks[0]).ota_password != null then 'ota']: {
+        [if std.objectHas(devices[device], 'networks') && (core_defaults + devices[device] + devices[device].networks[0]).ota_password != null then 'ota']: {
           safe_mode: true,
           password: (devices[device] + devices[device].networks[0]).ota_password,
         },
