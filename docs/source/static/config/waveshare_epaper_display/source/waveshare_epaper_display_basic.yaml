@@ -1,0 +1,22 @@
+device:
+  waveshare_epaper_display_basic:
+    board: nodemcu-32s
+    mixins:
+    - clk_pin: GPIO18
+      kind: spi_bus
+      mosi_pin: GPIO23
+      name: spi_1
+    - file: ../fonts/OpenSans-Regular.ttf
+      kind: ttf_font
+      name: opensans
+      size: 20
+    - bus: spi_1
+      busy_pin: GPIO4
+      cs_pin: GPIO5
+      dc_pin: GPIO22
+      full_update_every: 3600
+      kind: waveshare_epaper_display
+      lambda: it.print(0, 0, id(opensans), "Hello World!");
+      model: 2.90in
+      name: display_output
+      reset_pin: GPIO21

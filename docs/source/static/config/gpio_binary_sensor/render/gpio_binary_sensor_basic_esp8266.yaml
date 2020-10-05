@@ -1,0 +1,12 @@
+binary_sensor:
+- name: test_sensor_sensor
+  pin:
+    number: D1
+  platform: gpio
+esphome:
+  board: nodemcuv2
+  name: gpio_binary_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG

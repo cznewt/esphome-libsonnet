@@ -1,0 +1,7 @@
+device:
+  gpio_binary_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - kind: gpio_binary_sensor
+      name: test_sensor
+      pin: D1

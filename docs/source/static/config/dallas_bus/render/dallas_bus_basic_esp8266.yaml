@@ -1,0 +1,10 @@
+dallas:
+- id: dallas_1
+  pin: D1
+esphome:
+  board: nodemcuv2
+  name: dallas_bus_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG

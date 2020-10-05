@@ -1,0 +1,10 @@
+device:
+  ai_thinker_camera_vendor:
+    board: esp32cam
+    mixins:
+    - kind: ai_thinker_camera
+      name: test_camera
+    networks:
+    - api_password: api-pass
+      essid: wlan-essid
+      key: wlan-key

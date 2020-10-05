@@ -1,0 +1,34 @@
+esphome:
+  board: nodemcuv2
+  includes:
+  - ../includes/ezo_ec.h
+  libraries:
+  - Ezo_I2c_lib
+  name: ezo_ec_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- lambda: "auto ezo_ec_sensor = new EzoEcSensor(10000, 0x64);\nApp.register_component(ezo_ec_sensor);\n\
+    return {\n  ezo_ec_sensor->ec_sensor,\n  ezo_ec_sensor->tds_sensor,\n  ezo_ec_sensor->s_sensor,\n\
+    \  ezo_ec_sensor->sg_sensor\n};\n"
+  platform: custom
+  sensors:
+  - icon: mdi:flower
+    id: test_sensor_electrical_conductivity
+    name: test_sensor_electrical_conductivity
+    unit_of_measurement: uS/cm
+  - id: test_sensor_total_dissolved_solids
+    name: test_sensor_total_dissolved_solids
+    unit_of_measurement: ppm
+  - id: test_sensor_salinity
+    name: test_sensor_salinity
+    unit_of_measurement: ppt
+  - name: test_sensor_specific_gravity
+    unit_of_measurement: g/cm3

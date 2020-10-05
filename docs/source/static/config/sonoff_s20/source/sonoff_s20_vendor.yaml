@@ -1,0 +1,5 @@
+device:
+  sonoff_s20_vendor:
+    board: esp8285
+    mixins:
+    - kind: sonoff_s20

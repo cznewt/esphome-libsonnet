@@ -1,0 +1,16 @@
+display:
+- address: 39
+  dimensions: 20x4
+  id: display_output
+  platform: lcd_pcf8574
+esphome:
+  board: nodemcu-32s
+  name: pcf8574_display_basic_esp32
+  platform: ESP32
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO22
+  sda: GPIO21
+logger:
+  level: DEBUG

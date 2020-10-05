@@ -1,0 +1,10 @@
+device:
+  uln2003_stepper_basic:
+    board: nodemcuv2
+    mixins:
+    - kind: uln2003_stepper
+      name: test_motor
+      pin_a: D0
+      pin_b: D1
+      pin_c: D2
+      pin_d: D3

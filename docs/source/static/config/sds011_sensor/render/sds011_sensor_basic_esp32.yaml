@@ -1,0 +1,19 @@
+esphome:
+  board: nodemcu-32s
+  name: sds011_sensor_basic_esp32
+  platform: ESP32
+logger:
+  level: DEBUG
+sensor:
+- platform: sds011
+  pm_10_0:
+    id: test_sensor_pm_10
+    name: test_sensor_pm_10
+  pm_2_5:
+    id: test_sensor_pm_2_5
+    name: test_sensor_pm_2_5
+  update_interval: 5s
+uart:
+  baud_rate: 9600
+  rx_pin: GPIO3
+  tx_pin: GPIO1

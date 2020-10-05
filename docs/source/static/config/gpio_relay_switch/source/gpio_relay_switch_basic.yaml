@@ -1,0 +1,7 @@
+device:
+  gpio_relay_switch_basic:
+    board: nodemcuv2
+    mixins:
+    - kind: gpio_relay_switch
+      name: test_switch
+      pin: D3

@@ -1,0 +1,9 @@
+device:
+  adc_sensor_multiply_filter:
+    board: nodemcuv2
+    mixins:
+    - filters:
+      - multiply: 3.3
+      kind: adc_sensor
+      name: test_sensor
+      pin: 17

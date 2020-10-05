@@ -1,0 +1,12 @@
+esphome:
+  board: nodemcuv2
+  name: adc_sensor_chip_vcc
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- name: test_sensor_voltage
+  pin: VCC
+  platform: adc
+  update_interval: 5s

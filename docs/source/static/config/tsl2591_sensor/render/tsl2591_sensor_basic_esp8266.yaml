@@ -1,0 +1,30 @@
+esphome:
+  board: nodemcuv2
+  includes:
+  - ../includes/tsl2591.h
+  libraries:
+  - Adafruit TSL2591 Library
+  - Adafruit Unified Sensor
+  name: tsl2591_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- lambda: 'auto tsl2591_sensor = new TSL2591Sensor(5000);
+
+    App.register_component(tsl2591_sensor);
+
+    return {tsl2591_sensor};
+
+    '
+  platform: custom
+  sensors:
+  - accuracy_decimals: 2
+    name: test_sensor_light_intensity
+    unit_of_measurement: lx

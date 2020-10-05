@@ -1,0 +1,20 @@
+esphome:
+  board: nodemcu-32s
+  name: htu21d_sensor_basic_esp32
+  platform: ESP32
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO22
+  sda: GPIO21
+logger:
+  level: DEBUG
+sensor:
+- address: '0x40'
+  humidity:
+    name: test_sensor_humidity
+  i2c_id: i2c_1
+  platform: htu21d
+  temperature:
+    name: test_sensor_temperature
+  update_interval: 5s

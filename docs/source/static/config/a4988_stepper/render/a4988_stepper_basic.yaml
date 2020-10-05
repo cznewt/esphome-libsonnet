@@ -1,0 +1,13 @@
+esphome:
+  board: nodemcuv2
+  name: a4988_stepper_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+stepper:
+- dir_pin: D1
+  id: test_motor
+  max_speed: 250 steps/s
+  platform: a4988
+  step_pin: D0

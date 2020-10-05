@@ -1,0 +1,20 @@
+esphome:
+  board: nodemcuv2
+  name: gpio_l293d_motor_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+switch:
+- id: test_motor_power
+  name: test_motor_power
+  pin: D1
+  platform: gpio
+- id: test_motor_acw_rotation
+  name: test_motor_acw_rotation
+  pin: D2
+  platform: gpio
+- id: test_motor_cw_rotation
+  name: test_motor_cw_rotation
+  pin: D3
+  platform: gpio

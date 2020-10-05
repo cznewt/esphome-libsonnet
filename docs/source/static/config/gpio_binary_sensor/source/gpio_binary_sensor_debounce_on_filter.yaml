@@ -1,0 +1,9 @@
+device:
+  gpio_binary_sensor_debounce_on_filter:
+    board: nodemcuv2
+    mixins:
+    - filters:
+      - delayed_on: 10ms
+      kind: gpio_binary_sensor
+      name: test_sensor
+      pin: 17

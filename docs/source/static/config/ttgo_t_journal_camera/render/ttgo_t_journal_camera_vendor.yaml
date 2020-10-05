@@ -1,0 +1,34 @@
+api:
+  password: api-pass
+esp32_camera:
+  data_pins:
+  - GPIO17
+  - GPIO35
+  - GPIO34
+  - GPIO5
+  - GPIO39
+  - GPIO18
+  - GPIO36
+  - GPIO19
+  external_clock:
+    frequency: 20MHz
+    pin: GPIO27
+  href_pin: GPIO26
+  i2c_pins:
+    scl: GPIO23
+    sda: GPIO25
+  name: test_camera
+  pixel_clock_pin: GPIO21
+  vsync_pin: GPIO22
+esphome:
+  board: esp32dev
+  name: ttgo_t_journal_camera_vendor
+  platform: ESP32
+logger:
+  level: DEBUG
+wifi:
+  domain: .local
+  fast_connect: true
+  networks:
+  - password: wlan-key
+    ssid: wlan-essid

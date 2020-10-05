@@ -1,0 +1,10 @@
+esphome:
+  board: nodemcu-32s
+  name: spi_bus_basic_esp32
+  platform: ESP32
+logger:
+  level: DEBUG
+spi:
+  clk_pin: GPIO21
+  miso_pin: GPIO23
+  mosi_pin: GPIO22

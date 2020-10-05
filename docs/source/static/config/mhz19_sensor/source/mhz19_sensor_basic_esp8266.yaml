@@ -1,0 +1,12 @@
+device:
+  mhz19_sensor_basic_esp8266:
+    board: nodemcuv2
+    mixins:
+    - id: uart_1
+      kind: uart_bus
+      rx_pin: D0
+      tx_pin: D1
+    - automatic_baseline_calibration: false
+      bus: uart_1
+      kind: mhz19_sensor
+      name: test_sensor

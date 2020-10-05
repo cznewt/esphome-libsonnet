@@ -1,0 +1,61 @@
+binary_sensor:
+- device_class: power
+  name: sonoff_4ch_pro_r2_vendor_1_power
+  on_press:
+  - switch.toggle: sonoff_4ch_pro_r2_vendor_1_switch
+  pin:
+    inverted: 'yes'
+    mode: INPUT_PULLUP
+    number: GPIO12
+  platform: gpio
+- device_class: power
+  name: sonoff_4ch_pro_r2_vendor_2_power
+  on_press:
+  - switch.toggle: sonoff_4ch_pro_r2_vendor_2_switch
+  pin:
+    inverted: 'yes'
+    mode: INPUT_PULLUP
+    number: GPIO5
+  platform: gpio
+- device_class: power
+  name: sonoff_4ch_pro_r2_vendor_3_power
+  on_press:
+  - switch.toggle: sonoff_4ch_pro_r2_vendor_3_switch
+  pin:
+    inverted: 'yes'
+    mode: INPUT_PULLUP
+    number: GPIO4
+  platform: gpio
+- device_class: power
+  name: sonoff_4ch_pro_r2_vendor_4_power
+  on_press:
+  - switch.toggle: sonoff_4ch_pro_r2_vendor_4_switch
+  pin:
+    inverted: 'yes'
+    mode: INPUT_PULLUP
+    number: GPIO15
+  platform: gpio
+esphome:
+  board: esp8285
+  name: sonoff_4ch_pro_r2_vendor
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+switch:
+- id: sonoff_4ch_pro_r2_vendor_1_switch
+  name: sonoff_4ch_pro_r2_vendor_1_switch
+  pin: GPIO0
+  platform: gpio
+- id: sonoff_4ch_pro_r2_vendor_2_switch
+  name: sonoff_4ch_pro_r2_vendor_2_switch
+  pin: GPIO9
+  platform: gpio
+- id: sonoff_4ch_pro_r2_vendor_3_switch
+  name: sonoff_4ch_pro_r2_vendor_3_switch
+  pin: GPIO10
+  platform: gpio
+- id: sonoff_4ch_pro_r2_vendor_4_switch
+  name: sonoff_4ch_pro_r2_vendor_4_switch
+  pin: GPIO14
+  platform: gpio

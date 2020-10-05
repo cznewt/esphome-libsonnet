@@ -1,0 +1,23 @@
+dallas:
+- id: dallas_1
+  pin: D1
+- id: dallas_2
+  pin: D2
+esphome:
+  board: nodemcuv2
+  name: dallas_ds18_sensor_multiple_buses
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- address: 2017612646464694784
+  dallas_id: dallas_1
+  name: test_sensor_1
+  platform: dallas
+  resolution: 12
+- address: 2017612646464694784
+  dallas_id: dallas_2
+  name: test_sensor_2
+  platform: dallas
+  resolution: 12

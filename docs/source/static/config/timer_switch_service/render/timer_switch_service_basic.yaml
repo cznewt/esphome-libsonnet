@@ -1,0 +1,33 @@
+api:
+  password: api-pass
+  services:
+  - service: test_timer
+    then:
+    - switch.turn_on:
+        id: test_switch
+    - logger.log:
+        args: interval
+        format: Service test_timer turned on test_switch for %ds.
+    - delay: !lambda "return interval * 1000;"
+    - switch.turn_off: test_switch
+    - logger.log: Service test_timer turned off test_switch.
+    variables:
+      interval: int
+esphome:
+  board: nodemcuv2
+  name: timer_switch_service_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+switch:
+- id: test_switch
+  name: test_switch
+  pin: D3
+  platform: gpio
+wifi:
+  domain: .local
+  fast_connect: true
+  networks:
+  - password: wlan-key
+    ssid: wlan-essid

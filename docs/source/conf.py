@@ -2,6 +2,7 @@
 
 import sys
 import os
+import sphinx_rtd_theme
 
 sys.path.insert(0, os.path.abspath('..'))
 
@@ -13,15 +14,34 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.imgmath',
     'sphinx.ext.viewcode',
+    "sphinx_rtd_theme",
 ]
+"""
+html_theme_options = {
+    'canonical_url': '',
+    'analytics_id': 'UA-XXXXXXX-1',  #  Provided by Google in your dashboard
+    'logo_only': False,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': False,
+    'vcs_pageview_mode': '',
+    'style_nav_header_background': 'white',
+    # Toc options
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+    'navigation_depth': 4,
+    'includehidden': True,
+    'titles_only': False
+}
+"""
 
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'ESPHome JSONNET Library'
-copyright = u'Team of authors'
+project = u'ESPHome-JSONNET Project'
+copyright = u'2019-2000, ESPHome-JSONNET Team'
 
 version = '0.1'
 release = '0.1.0'
@@ -30,8 +50,13 @@ exclude_patterns = []
 
 pygments_style = 'sphinx'
 
-html_theme = "default"
+html_theme = "sphinx_rtd_theme"
 
+#import sphinx_kr_theme
+
+#html_theme = 'kr'  # or 'kr_basic'
+
+#   html_theme_path = [sphinx_kr_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -110,7 +135,7 @@ html_static_path = ['static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ESPHome'
+htmlhelp_basename = 'ESPHome-JSONNET'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -129,8 +154,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', 'esphome.tex', u'ESPHome JSONNET Library',
-     u'Team of authors', 'manual'),
+    ('index', 'eshopome-jsonnet.tex', u'ESPHome-JSONNET Documentation',
+     u'ESPHome-JSONNET Team', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -159,8 +184,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'esphome', u'ESPHome JSONNET Library',
-     [u'Team of authors'], 1)
+    ('index', 'ESPHome-JSONNET', u'ESPHome-JSONNET Documentation',
+     [u'ESPHome-JSONNET Team'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -173,8 +198,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'ESPHome JSONNET Lib', u'ESPHome JSONNET Library',
-   u'Team of authors', 'ESPHome JSONNET Lib', 'JSONNET library for creating ESPHome configurations.',
+  ('index', 'ESPHome-JSONNET', u'ESPHome-JSONNET Documentation',
+   u'ESPHome-JSONNET Team', 'ESPHome-JSONNET', 'Generating ESPHome configurations.',
    'Miscellaneous'),
 ]
 

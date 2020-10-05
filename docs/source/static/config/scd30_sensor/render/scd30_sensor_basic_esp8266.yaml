@@ -1,0 +1,29 @@
+esphome:
+  board: nodemcuv2
+  name: scd30_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: D5
+  sda: D4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- address: '0x61'
+  co2:
+    accuracy_decimals: 1
+    id: test_sensor_co2
+    name: test_sensor_co2
+  humidity:
+    accuracy_decimals: 1
+    id: test_sensor_humidity
+    name: test_sensor_humidity
+  i2c_id: i2c_1
+  platform: scd30
+  temperature:
+    accuracy_decimals: 2
+    id: test_sensor_temperature
+    name: test_sensor_temperature
+  update_interval: 5s

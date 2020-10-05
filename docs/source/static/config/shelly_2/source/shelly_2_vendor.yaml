@@ -1,0 +1,5 @@
+device:
+  shelly_2_vendor:
+    board: esp8285
+    mixins:
+    - kind: shelly_2

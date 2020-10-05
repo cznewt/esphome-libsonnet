@@ -1,0 +1,12 @@
+esphome:
+  board: nodemcuv2
+  name: gpio_relay_switch_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+switch:
+- id: test_switch_switch
+  name: test_switch_switch
+  pin: D3
+  platform: gpio

@@ -1,0 +1,50 @@
+api:
+  password: api-pass
+  services:
+  - service: set_angle_test_motor
+    then:
+    - lambda: 'id(test_motor).write(angle / 90.0);
+
+        ESP_LOGD("api_set_angle_test_motor", "Set angle of servo test_motor");
+
+        '
+    variables:
+      angle: float
+  - service: detach_servo_test_motor
+    then:
+    - lambda: 'id(test_motor).detach();
+
+        ESP_LOGD("api_detach_servo_test_motor", "Detached servo test_motor");
+
+        '
+esphome:
+  board: nodemcuv2
+  name: pca9685_servo_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: D1
+  sda: D2
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+output:
+- channel: 0
+  id: test_motor_output
+  pca9685_id: pca_1
+  platform: pca9685
+pca9685:
+- address: '0x40'
+  frequency: 500
+  id: pca_1
+servo:
+- id: test_motor
+  name: test_motor
+  output: test_motor_output
+wifi:
+  domain: .local
+  fast_connect: true
+  networks:
+  - password: wlan-key
+    ssid: wlan-essid

@@ -1,0 +1,16 @@
+esphome:
+  board: nodemcuv2
+  name: gpio_l9110s_motor_basic
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+switch:
+- id: test_motor_a
+  name: test_motor_a
+  pin: D2
+  platform: gpio
+- id: test_motor_b
+  name: test_motor_b
+  pin: D3
+  platform: gpio

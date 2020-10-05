@@ -1,0 +1,14 @@
+device:
+  timer_switch_service_basic:
+    board: nodemcuv2
+    mixins:
+    - kind: gpio_relay_switch
+      name: test
+      pin: D3
+    - kind: timer_switch_service
+      name: test_timer
+      switch: test_switch
+    networks:
+    - api_password: api-pass
+      essid: wlan-essid
+      key: wlan-key

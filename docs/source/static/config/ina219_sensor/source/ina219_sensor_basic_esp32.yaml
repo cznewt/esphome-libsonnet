@@ -1,0 +1,11 @@
+device:
+  ina219_sensor_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+    - clock_pin: GPIO22
+      data_pin: GPIO21
+      id: i2c_1
+      kind: i2c_bus
+    - bus: i2c_1
+      kind: ina219_sensor
+      name: test_sensor

@@ -1,0 +1,13 @@
+device:
+  pcf8574_display_basic_esp32:
+    board: nodemcu-32s
+    mixins:
+    - clock_pin: GPIO22
+      data_pin: GPIO21
+      kind: i2c_bus
+      name: i2c_1
+    - address: 39
+      bus: i2c_1
+      display_size: 20x4
+      kind: pcf8574_display
+      name: display_output

@@ -1,0 +1,13 @@
+esphome:
+  board: nodemcuv2
+  name: aj_sr04m_sensor_basic_esp8266
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- echo_pin: D1
+  name: test_sensor_distance
+  platform: ultrasonic
+  trigger_pin: D2
+  update_interval: 5s

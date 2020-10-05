@@ -1,0 +1,14 @@
+esphome:
+  board: nodemcuv2
+  name: adc_sensor_multiply_filter
+  platform: ESP8266
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- filters:
+  - multiply: 3.3
+  name: test_sensor_voltage
+  pin: 17
+  platform: adc
+  update_interval: 5s

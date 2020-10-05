@@ -1,0 +1,20 @@
+esphome:
+  board: nodemcuv2
+  name: bh1750_sensor_basic_esp8266
+  platform: ESP8266
+i2c:
+- id: i2c_1
+  scan: true
+  scl: GPIO5
+  sda: GPIO4
+logger:
+  esp8266_store_log_strings_in_flash: false
+  level: DEBUG
+sensor:
+- address: '0x23'
+  i2c_id: i2c_1
+  id: test_sensor_light_intensity
+  name: test_sensor_light_intensity
+  platform: bh1750
+  resolution: '0.5'
+  update_interval: 5s

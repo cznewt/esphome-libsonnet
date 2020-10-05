@@ -1,0 +1,33 @@
+display:
+- busy_pin: GPIO4
+  cs_pin: GPIO5
+  dc_pin: GPIO22
+  full_update_every: 3600
+  id: display_output
+  model: 2.90in
+  pages:
+  - id: page1
+    lambda: it.print(0, 0, id(opensans), "Hello World!");
+  - id: page2
+    lambda: it.print(0, 0, id(opensans), "Good Bye!");
+  platform: waveshare_epaper
+  reset_pin: GPIO21
+  rotation: "90\xB0"
+esphome:
+  board: nodemcu-32s
+  name: waveshare_epaper_display_pages
+  platform: ESP32
+font:
+- file: ../fonts/OpenSans-Regular.ttf
+  id: opensans
+  size: 20
+interval:
+- interval: 30s
+  then:
+  - display.page.show_next: display_output
+  - component.update: display_output
+logger:
+  level: DEBUG
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
